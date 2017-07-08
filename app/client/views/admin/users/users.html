@@ -95,6 +95,7 @@
             <th>E-mail address</th>
             <th>V/S/A/C</th>
              <th>Actions</th>
+            <th>School</th>
 
           </tr>
         </thead>
@@ -179,9 +180,11 @@
 
             <!--Accept user-->
               <button
-                class="accept ui circular mini basic green icon button"
+                class="accept ui circular mini basic icon button"
                 ng-click="acceptUser($event, user, $index)">
-                <i class="add user icon"> </i>
+                <i class="add user icon" ng-if="!user.status.admitted"> </i>
+                <i class="add user green icon" ng-if="user.status.admitted"> </i>
+
                 Accept
               </button>
 
@@ -210,6 +213,9 @@
               </button>
 
             </td>
+
+            <td>{{user.profile.school}}</td>
+
           </tr>
         </tbody>
       </table>

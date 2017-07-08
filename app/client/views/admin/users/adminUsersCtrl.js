@@ -79,8 +79,11 @@ angular.module('reg')
                 .checkIn(user._id)
                 .success(function(user){
                   $scope.users[index] = user;
-                  swal("Accepted", user.profile.name + ' has been checked in.', "success");
-                });
+                  swal("Checked in", user.profile.name + ' has been checked in.', "success");
+                })
+                .error(function(err){
+                    swal("Not checked in", user.profile.name + ' could not be checked in. ', "error");
+                  });
             }
           );
         } else {
@@ -88,7 +91,10 @@ angular.module('reg')
             .checkOut(user._id)
             .success(function(user){
               $scope.users[index] = user;
-              swal("Accepted", user.profile.name + ' has been checked out.', "success");
+              swal("Checked out", user.profile.name + ' has been checked out.', "success");
+            })
+            .error(function(err){
+                    swal("Not checked out", user.profile.name + ' could not be checked out. ', "error");
             });
         }
       };
@@ -96,6 +102,7 @@ angular.module('reg')
       $scope.acceptUser = function($event, user, index) {
         $event.stopPropagation();
 
+        if (!user.status.admitted){
         swal({
           title: "Whoa, wait a minute!",
           text: "You are about to accept " + user.profile.name + "!",
@@ -122,11 +129,19 @@ angular.module('reg')
                   .success(function(user){
                     $scope.users[index] = user;
                     swal("Accepted", user.profile.name + ' has been admitted.', "success");
+                  })
+                  .error(function(err){
+                    swal("Not admitted", user.profile.name + ' could not be admitted. ', "error");
                   });
 
               });
 
           });
+        }
+          else {
+              // unadmit user
+              
+          }
 
       };
 
@@ -159,10 +174,10 @@ angular.module('reg')
                   .removeUser(user._id)
                   .success(function(user){
                     $scope.users.splice(index,1);
-                    swal("Delete", user.profile.name + ' has been deleted.', "success");
+                    swal("Deleted", user.profile.name + ' has been deleted.', "success");
                   })
                   .error(function(err){
-                    swal("Delete", user.profile.name + ' could not be deleted. ', "error");
+                    swal("Not deleted", user.profile.name + ' could not be deleted. ', "error");
                   });
 
               });
