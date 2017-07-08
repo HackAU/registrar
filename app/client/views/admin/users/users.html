@@ -93,13 +93,9 @@
           <tr>
             <th>Name</th>
             <th>E-mail address</th>
-            <th>School</th>
-            <th>Grad</th>
             <th>V/S/A/C</th>
-            <th>Host</th>
-            <th>$</th>
-            <th></th>
-            <th></th>
+             <th>Actions</th>
+
           </tr>
         </thead>
         <tbody>
@@ -115,11 +111,6 @@
               </strong>
             </td>
             <td>{{user.email}}</td>
-            <td>{{user.profile.school}}</td>
-            <td
-              class="collapsing">
-              {{user.profile.graduationYear}}
-            </td>
             <td
               class="collapsing">
 
@@ -173,42 +164,8 @@
 
             </td>
 
-            <!-- Host -->
-            <td
-              class="collapsing">
-
-              <span ng-if="user.status.confirmed">
-                <i
-                  ng-if="user.confirmation.hostNeededFri"
-                  class="home icon">
-                </i>
-                <i
-                  ng-if="!user.confirmation.hostNeededFri && user.confirmation.hostNeededSat"
-                  class="no icon">
-                </i>
-                <i
-                  ng-if="user.confirmation.hostNeededSat"
-                  class="home icon">
-                </i>
-              </span>
-
-            </td>
-
-            <td
-              class="collapsing">
-              <span ng-if="user.status.confirmed">
-                <i
-                  ng-if="user.confirmation.needsReimbursement && !user.status.reimbursementGiven"
-                  class="red money icon">
-                </i>
-                <i
-                  ng-if="user.confirmation.needsReimbursement && user.status.reimbursementGiven"
-                  class="green money icon">
-                </i>
-              </span>
-            </td>
-
-
+    
+            <!--Actions-->
             <!--View user-->
             <td 
               class="collapsing">
@@ -216,17 +173,16 @@
                 ng-click="goUser($event, user)"
                 class="ui circular mini basic icon button">
                 <i class="linkify icon"></i>
+                 View
               </button>
-            </td>
 
-            <td
-              class="right aligned collapsing">
 
             <!--Accept user-->
               <button
                 class="accept ui circular mini basic green icon button"
                 ng-click="acceptUser($event, user, $index)">
-                <i class="add user icon"></i>
+                <i class="add user icon"> </i>
+                Accept
               </button>
 
               <!--check-in user to event-->
@@ -240,7 +196,7 @@
                 <i
                   ng-if="user.status.checkedIn"
                   class="green flag icon"></i>
-
+                  Check-in
               </button>
 
               <!--Delete user from records-->
@@ -250,7 +206,7 @@
                 <i
                   ng-if="user.status"
                   class="delete outline icon"></i>
-
+                  Remove
               </button>
 
             </td>
