@@ -1,0 +1,71 @@
+$redColor: rgba(244,67,54,1);
+$blueColor:rgba(33,150,243,1);
+
+.flex-center-social {$redColor: rgba(244, 67, 54, 1);
+$blueColor: rgba(33, 150, 243, 1);
+
+.flex-center-social {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-3d {
+  padding: 10px;
+  color: #fff;
+  &:hover {
+    animation: icon3d 200ms infinite;
+  }
+}
+
+@keyframes icon3d {
+  0% {
+    text-shadow: 5px 4px $redColor, -5px -6px $blueColor;
+  }
+  25% {
+    text-shadow: -5px -6px $redColor, 5px 4px $blueColor;
+  }
+  50% {
+    text-shadow: 5px -4px $redColor, -8px 4px $blueColor;
+  }
+  75% {
+    text-shadow: -8px -4px $redColor, -5px -4px $blueColor;
+  }
+  100% {
+    text-shadow: -5px 0 $redColor, 5px -4px $blueColor;
+  }
+}
+
+ 
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-3d {
+  padding: 1px;
+  color: #fff;
+  &:hover {
+    animation: icon3d 200ms infinite;
+  }
+}
+
+@keyframes icon3d {
+  0% {
+    text-shadow: 5px 4px $redColor, -5px -6px $blueColor;
+  }
+  25% {
+    text-shadow: -5px -6px $redColor, 5px 4px $blueColor;
+  }
+  50% {
+    text-shadow: 5px -4px $redColor, -8px 4px $blueColor;
+  }
+  75% {
+    text-shadow: -8px -4px $redColor, -5px -4px $blueColor;
+  }
+  100% {
+    text-shadow: -5px 0 $redColor, 5px -4px $blueColor;
+  }
+}
