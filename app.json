@@ -1,0 +1,28 @@
+{
+    "name": "Registrar",
+    "description": "A barebones Node.js app using Express 4",
+    "repository": "https://github.com/heroku/node-js-sample",
+    "logo": "https://rawgit.com/heroku/node-js-sample/master/public/node.svg",
+    "keywords": [
+        "node",
+        "express",
+        "static"
+    ],
+    "env": {
+        "NODE_ENV": {
+            "value": "dev"
+        },
+        "DATABASE": {
+            "value": "mongodb://eladkeyshawn:9352221@ds015774.mlab.com:15774/registrar-test"
+        },
+        "JWT_SECRET": {
+            "value": "shhhh super secret code here bro"
+        },
+        "ADMIN_EMAIL": {
+            "value": "admin@hackmit.org"
+        },
+        "ADMIN_PASS": {
+            "value": "party"
+        }
+    }
+}
