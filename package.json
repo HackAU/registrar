@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "private": "true",
   "engines": {
-    "node": "6.10.3"
+    "node": "6.10.3",
+    "npm": "3.10.10"
   },
   "dependencies": {
     "async": "^1.4.2",
@@ -33,7 +34,8 @@
     "start": "nodemon app.js",
     "watch": "gulp server",
     "prod": "gulp build && node app.js",
-    "config": "cp .env.config .env"
+    "config": "cp .env.config .env",
+    "heroku-prebuild": "cp .env.config .env"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
