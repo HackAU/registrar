@@ -12,8 +12,7 @@ var mongodb = require('mongodb');
 
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
-var database = process.env.DATABASE || "mongodb://localhost:27017";
-var database_uri = process.env.DATABASE || "mongodb://localhost:27017";
+var database_uri = process.env.PROD_MONGODB || "mongodb://localhost:27017";
 
 var settingsConfig = require('./config/settings');
 var adminConfig = require('./config/admin');
