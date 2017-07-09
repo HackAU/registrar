@@ -102,7 +102,7 @@ angular.module('reg')
       $scope.acceptUser = function($event, user, index) {
         $event.stopPropagation();
 
-        if (!user.status.admitted){
+        // if (!user.status.admitted){
         swal({
           title: "Whoa, wait a minute!",
           text: "You are about to accept " + user.profile.name + "!",
@@ -137,11 +137,11 @@ angular.module('reg')
               });
 
           });
-        }
-          else {
-              // unadmit user
+        
+          // else {
+          //     // unadmit user
               
-          }
+          // }
 
       };
 

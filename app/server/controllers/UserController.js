@@ -645,8 +645,11 @@ UserController.resetPassword = function(token, password, callback){
  */
 UserController.admitUser = function(id, user, callback){
   Settings.getRegistrationTimes(function(err, times){
-    User
-      .findOneAndUpdate({
+    User.findOne(
+      {
+        _id: id
+    },function(err,user){
+      Mailer.sendUserAcceptanceEmail(user.email,User.findOneAndUpdate({
         _id: id,
         verified: true
       },{
@@ -658,9 +661,12 @@ UserController.admitUser = function(id, user, callback){
       }, {
         new: true
       },
-      callback);
-  });
-};
+      callback
+  ))})
+  })
+
+    
+}
 
 /**
  * [ADMIN ONLY]

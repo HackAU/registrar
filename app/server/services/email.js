@@ -185,4 +185,38 @@ controller.sendPasswordChangedEmail = function(email, callback){
 
 };
 
+
+/**
+ * Send a password recovery email.
+ * @param  {[type]}   email    [description]
+ * @param  {Function} callback [description]
+ */
+controller.sendUserAcceptanceEmail = function(email, callback){
+
+  var options = {
+    to: email,
+    subject: "[HACKAU] - Congratulations!"
+  };
+
+  var locals = {
+    title: 'You have been accepted to HackAU 2017!',
+    body: 'Body of accpetance email.',
+  };
+
+
+  sendOne('email-basic', options, locals, function(err, info){
+    if (err){
+      console.log(err);
+    }
+    if (info){
+      console.log(info.message);
+    }
+    if (callback){
+      callback(err, info);
+    }
+  });
+};
+
+
+
 module.exports = controller;
