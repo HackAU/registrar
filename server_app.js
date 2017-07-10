@@ -12,14 +12,13 @@ var mongodb = require('mongodb');
 
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
-var database_uri = process.env.PROD_MONGODB || "mongodb://localhost:27017";
+var database_uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
 
 var settingsConfig = require('./config/settings');
 var adminConfig = require('./config/admin');
 
 var app = express();
 
-  mongoose.connect(database_uri);
   app.use(morgan('dev'));
   app.use(cookieParser());
 
@@ -31,6 +30,8 @@ var app = express();
   app.use(methodOverride());
 
   app.use(express.static(__dirname + '/app/client'));
+
+  mongoose.connect(database_uri);
 
   // Routers =====================================================================
 
