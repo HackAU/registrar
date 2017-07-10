@@ -1,18 +1,18 @@
 
 
 # Dependencies:
-npm install
+`npm install
 bower install
-
+`
 # Configuration:
-npm run config
+`npm run config`
 
 # MongoDB:
-mkdir db
+`mkdir db
 mongod --dbpath db --bind_ip 127.0.0.1 --nohttpinterface
-
+`
 # Building and running:
-gulp server
+`gulp server`
 
 
 # Deploying to Heroku:
