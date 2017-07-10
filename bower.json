@@ -1,7 +1,7 @@
 {
-  "name": "JAFRS",
+  "name": "registrar",
   "version": "0.0.0",
-  "homepage": "https://github.com/techx/hackmit-registration",
+  "homepage": "",
   "authors": [
     "Edwin Zhang <ehzhang@mit.edu>"
   ],
