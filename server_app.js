@@ -8,8 +8,6 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
-var mongodb = require('mongodb');
-
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
 var database_uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
@@ -18,6 +16,9 @@ var settingsConfig = require('./config/settings');
 var adminConfig = require('./config/admin');
 
 var app = express();
+
+mongoose.connect(database_uri);
+
 
   app.use(morgan('dev'));
   app.use(cookieParser());
@@ -31,7 +32,6 @@ var app = express();
 
   app.use(express.static(__dirname + '/app/client'));
 
-  mongoose.connect(database_uri);
 
   // Routers =====================================================================
 

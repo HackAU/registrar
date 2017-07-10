@@ -1,6 +1,5 @@
 var UserController = require('../controllers/UserController');
 var SettingsController = require('../controllers/SettingsController');
-var Mailer = require('../services/email');
 
 var request = require('request');
 
