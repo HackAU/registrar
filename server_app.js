@@ -1,5 +1,5 @@
 // Load the dotfiles.
-// require('dotenv').load();
+require('dotenv').load();
 
 var express = require('express');
 
