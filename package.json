@@ -35,7 +35,7 @@
     "watch": "gulp server",
     "prod": "gulp build && node app.js",
     "config": "cp .env.config .env",
-    "heroku-prebuild": "bower install"
+    "postinstall": "bower install"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
