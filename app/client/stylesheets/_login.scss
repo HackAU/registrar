@@ -1,3 +1,4 @@
+
 #login {
   height: 100%;
   width: 100%;
@@ -29,10 +30,17 @@
       .button {
         color: white;
         &.login {
-          background: $login-color;
+
+          background: $login-btn-color;
+          &:hover {
+              background: $login-btn-color-selected;
+          }
         }
         &.register {
-          background: $register-color
+          background: $register-btn-color;
+           &:hover {
+              background: $register-btn-color-selected;
+          }
         }
       }
 
