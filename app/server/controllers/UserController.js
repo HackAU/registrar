@@ -720,13 +720,25 @@ UserController.checkOutById = function(id, user, callback){
  *
  * remove a user.
  * @param  {String}   userId   User id of the user being removed.
- * @param  {String}   user     User deleting in this person.
+ * @param  {String}   user     User deleting this person.
  * @param  {Function} callback args(err, user)
  */
 UserController.removeUserById = function(id, user, callback){
   // User.findByIdAndRemove(id, callback);
   User.findOne({
     _id: id
+  }, function (err,user) {
+    if (err || !user || user.admin) {
+      return callback(new Error('cannot delete admin'));
+    }
+      return user.remove(callback);
+  })
+  
+};
+
+UserController.removeUserByEmail = function(mail, user, callback){
+  User.findOne({
+    email: mail
   }, function (err,user) {
     if (err || !user || user.admin) {
       return callback(new Error('cannot delete admin'));

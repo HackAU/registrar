@@ -36,7 +36,7 @@
     "watch": "gulp server",
     "prod": "gulp build && node app.js",
     "config": "cp .env.config .env",
-    "postinstall": "bower install"
+    "postinstall": "bower install --allow-root"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
