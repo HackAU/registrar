@@ -32,7 +32,7 @@
   },
   "scripts": {
     "mongo": "mongod --dbpath db",
-    "start": "node server_app.js",
+    "start": "MONGODB_URI=mongodb://eladkeyshawn:9352221@ds015774.mlab.com:15774/registrar-test node www.js",
     "watch": "gulp server",
     "prod": "gulp build && node app.js",
     "config": "cp .env.config .env",
