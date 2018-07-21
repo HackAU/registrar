@@ -1,6 +1,6 @@
 <div id="team" class="page">
   <div class="divided title">
-    Team
+    Teams
   </div>
 
   <div class="ui stackable page grid">
@@ -10,39 +10,6 @@
         ng-show="error">
         {{error}}
       </div>
-
-      <div class="ui segment" ng-repeat="team in teams">
-
-
-        <!--Teams list  -->
-        <div
-                class="ui form">
-
-          <div class="title">
-            {{team.title}}
-          </div>
-
-          <br>
-
-          <div class="description">
-            {{team.description}}
-          </div>
-
-          <br>
-
-
-          <div class="field">
-            <button
-                    class="ui fluid red button"
-                    ng-click="deleteTeam()">
-              Delete team
-            </button>
-          </div>
-
-        </div>
-
-
-        </div>
 
 
       <div class="ui segment">
@@ -89,6 +56,42 @@
 
         </div>
       </div>
+
+
+      <div class="ui segment" ng-repeat="team in teams">
+
+
+        <!--Teams list  -->
+        <div
+                class="ui form">
+
+          <div class="title">
+            {{team.title}}
+          </div>
+
+          <br>
+
+          <div class="description">
+            {{team.description}}
+          </div>
+
+          <br>
+
+
+          <div class="field">
+            <button
+                    class="ui fluid red button"
+                    ng-click="deleteTeam()">
+              Delete team
+            </button>
+          </div>
+
+        </div>
+
+
+        </div>
+
+
 
     </div>
   </div>
