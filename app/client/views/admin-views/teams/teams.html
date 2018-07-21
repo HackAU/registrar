@@ -17,6 +17,8 @@
             {{ TEAM.NO_TEAM_REG_CLOSED }}
           </p>
         </div>
+
+        <!--Create a team-->
         <div
           class="ui form"
           ng-show="!user.teamCode && regIsOpen">
@@ -42,6 +44,14 @@
               Join or Create Team
             </button>
           </div>
+
+        </div>
+
+
+        <div ng-repeat="team in teams">
+
+          {{ team.title}}
+          {{team.description}}
 
         </div>
 

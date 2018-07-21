@@ -1,8 +1,8 @@
-var UserController = require('../controllers/UserController');
-var SettingsController = require('../controllers/SettingsController');
-var TeamController = require('../controllers/TeamController');
+const UserController = require('../controllers/UserController');
+const SettingsController = require('../controllers/SettingsController');
+const TeamController = require('../controllers/TeamController');
 
-var request = require('request');
+const request = require('request');
 
 module.exports = function (router) {
 
@@ -16,9 +16,9 @@ module.exports = function (router) {
      */
     function isAdmin(req, res, next) {
 
-        return next(); // for testing purposes, remove!!!!
+        return next(); // for testing purposes,TODO: remove!!!!
 
-        var token = getToken(req);
+        const token = getToken(req);
 
         UserController.getByToken(token, function (err, user) {
 
@@ -48,8 +48,8 @@ module.exports = function (router) {
      * want I suppose!
      */
     function isOwnerOrAdmin(req, res, next) {
-        var token = getToken(req);
-        var userId = req.params.id;
+        const token = getToken(req);
+        const userId = req.params.id;
 
         UserController.getByToken(token, function (err, user) {
 
@@ -95,7 +95,7 @@ module.exports = function (router) {
     // ---------------------------------------------
 
     router.get('/teams', isAdmin, function (req, res) {
-        var query = req.query;
+        const query = req.query;
         console.log("in teams");
         if (query.page && query.size) {
 
@@ -124,7 +124,7 @@ module.exports = function (router) {
      * ex. Paginate with ?page=0&size=100
      */
     router.get('/users', isAdmin, function (req, res) {
-        var query = req.query;
+        const query = req.query;
 
         if (query.page && query.size) {
 
@@ -160,8 +160,8 @@ module.exports = function (router) {
      * PUT - Update a specific user's profile.
      */
     router.put('/users/:id/profile', isOwnerOrAdmin, function (req, res) {
-        var profile = req.body.profile;
-        var id = req.params.id;
+        const profile = req.body.profile;
+        const id = req.params.id;
 
         UserController.updateProfileById(id, profile, defaultResponse(req, res));
     });
@@ -172,8 +172,8 @@ module.exports = function (router) {
      * PUT - Update a specific user's confirmation information.
      */
     router.put('/users/:id/confirm', isOwnerOrAdmin, function (req, res) {
-        var confirmation = req.body.confirmation;
-        var id = req.params.id;
+        const confirmation = req.body.confirmation;
+        const id = req.params.id;
 
         UserController.updateConfirmationById(id, confirmation, defaultResponse(req, res));
     });
@@ -184,8 +184,8 @@ module.exports = function (router) {
      * POST - Decline an acceptance.
      */
     router.post('/users/:id/decline', isOwnerOrAdmin, function (req, res) {
-        var confirmation = req.body.confirmation;
-        var id = req.params.id;
+        const confirmation = req.body.confirmation;
+        const id = req.params.id;
 
         UserController.declineById(id, defaultResponse(req, res));
     });
@@ -195,7 +195,7 @@ module.exports = function (router) {
      * with the user making the request.
      */
     router.get('/users/:id/team', isOwnerOrAdmin, function (req, res) {
-        var id = req.params.id;
+        const id = req.params.id;
         UserController.getTeammates(id, defaultResponse(req, res));
     });
 
@@ -206,8 +206,8 @@ module.exports = function (router) {
    * }
      */
     router.put('/users/:id/team', isOwnerOrAdmin, function (req, res) {
-        var code = req.body.code;
-        var id = req.params.id;
+        const code = req.body.code;
+        const id = req.params.id;
 
         UserController.createOrJoinTeam(id, code, defaultResponse(req, res));
 
@@ -217,7 +217,7 @@ module.exports = function (router) {
      * Remove a user from a team.
      */
     router.delete('/users/:id/team', isOwnerOrAdmin, function (req, res) {
-        var id = req.params.id;
+        const id = req.params.id;
 
         UserController.leaveTeam(id, defaultResponse(req, res));
     });
@@ -251,8 +251,8 @@ module.exports = function (router) {
      */
     router.post('/users/:id/admit', isAdmin, function (req, res) {
         // Accept the hacker. Admin only
-        var id = req.params.id;
-        var user = req.user;
+        const id = req.params.id;
+        const user = req.user;
         UserController.admitUser(id, user, defaultResponse(req, res));
     });
 
@@ -260,8 +260,8 @@ module.exports = function (router) {
      * Check in a user. ADMIN ONLY, DUH
      */
     router.post('/users/:id/checkin', isAdmin, function (req, res) {
-        var id = req.params.id;
-        var user = req.user;
+        const id = req.params.id;
+        const user = req.user;
         UserController.checkInById(id, user, defaultResponse(req, res));
     });
 
@@ -269,8 +269,8 @@ module.exports = function (router) {
      * Check out a user. ADMIN ONLY, DUH
      */
     router.post('/users/:id/checkout', isAdmin, function (req, res) {
-        var id = req.params.id;
-        var user = req.user;
+        const id = req.params.id;
+        const user = req.user;
         UserController.checkOutById(id, user, defaultResponse(req, res));
     });
 
@@ -278,8 +278,8 @@ module.exports = function (router) {
      * remove a user. ADMIN ONLY, DUH
      */
     router.post('/users/:id/remove', isAdmin, function (req, res) {
-        var id = req.params.id;
-        var user = req.user;
+        const id = req.params.id;
+        const user = req.user;
         UserController.removeUserById(id, user, defaultResponse(req, res));
     });
 
@@ -309,7 +309,7 @@ module.exports = function (router) {
    * }
      */
     router.put('/settings/waitlist', isAdmin, function (req, res) {
-        var text = req.body.text;
+        const text = req.body.text;
         SettingsController.updateField('waitlistText', text, defaultResponse(req, res));
     });
 
@@ -320,7 +320,7 @@ module.exports = function (router) {
    * }
      */
     router.put('/settings/acceptance', isAdmin, function (req, res) {
-        var text = req.body.text;
+        const text = req.body.text;
         SettingsController.updateField('acceptanceText', text, defaultResponse(req, res));
     });
 
@@ -331,7 +331,7 @@ module.exports = function (router) {
    * }
      */
     router.put('/settings/confirmation', isAdmin, function (req, res) {
-        var text = req.body.text;
+        const text = req.body.text;
         SettingsController.updateField('confirmationText', text, defaultResponse(req, res));
     });
 
@@ -342,7 +342,7 @@ module.exports = function (router) {
    * }
      */
     router.put('/settings/confirm-by', isAdmin, function (req, res) {
-        var time = req.body.time;
+        const time = req.body.time;
         SettingsController.updateField('timeConfirm', time, defaultResponse(req, res));
     });
 
@@ -354,8 +354,8 @@ module.exports = function (router) {
    * }
      */
     router.put('/settings/times', isAdmin, function (req, res) {
-        var open = req.body.timeOpen;
-        var close = req.body.timeClose;
+        const open = req.body.timeOpen;
+        const close = req.body.timeClose;
         SettingsController.updateRegistrationTimes(open, close, defaultResponse(req, res));
     });
 
@@ -379,7 +379,7 @@ module.exports = function (router) {
      *
      */
     router.put('/settings/whitelist', isAdmin, function (req, res) {
-        var emails = req.body.emails;
+        const emails = req.body.emails;
         SettingsController.updateWhitelistedEmails(emails, defaultResponse(req, res));
     });
 
