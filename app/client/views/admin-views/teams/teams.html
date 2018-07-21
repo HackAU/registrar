@@ -2,99 +2,94 @@
   <div class="divided title">
     Team
   </div>
-  <div class="ui stackable centered page grid">
-    <div class="column">
+
+  <div class="ui stackable page grid">
+    <div class="">
       <div
         class="ui error message"
         ng-show="error">
         {{error}}
       </div>
 
-      <div class="ui segment">
-        <div
-          ng-show="!user.teamCode && !regIsOpen">
-          <p>
-            {{ TEAM.NO_TEAM_REG_CLOSED }}
-          </p>
-        </div>
+      <div class="ui segment" ng-repeat="team in teams">
 
-        <!--Create a team-->
+
+        <!--Teams list  -->
         <div
-          class="ui form"
-          ng-show="!user.teamCode && regIsOpen">
+                class="ui form">
 
           <div class="title">
-            Join or Create a Team
+            {{team.title}}
           </div>
 
           <br>
 
-          <div class="field">
-            <input
-              class="ui input"
-              type="text"
-              placeholder="Choose your team name..."
-              ng-model="code">
+          <div class="description">
+            {{team.description}}
           </div>
+
+          <br>
+
 
           <div class="field">
             <button
-              class="ui fluid blue button"
-              ng-click="joinTeam()">
-              Join or Create Team
+                    class="ui fluid red button"
+                    ng-click="deleteTeam()">
+              Delete team
             </button>
           </div>
 
         </div>
 
 
-        <div ng-repeat="team in teams">
-
-          {{ team.title}}
-          {{team.description}}
-
         </div>
 
+
+      <div class="ui segment">
         <div
-          ng-show="user.teamCode">
-          <div class="form">
-            <div class="title">
-              Your Team Name:
-            </div>
-          </div>
-          <br>
-          <div class="subheader">
-            {{user.teamCode}}
-          </div>
-
-          <br />
-
-          <div class="ui divider"></div>
-
-          <div class="form">
-            <div class="title">
-              Your Team:
-            </div>
-          </div>
-
-          <p
-            ng-repeat="user in teammates"
-            class="item">
-            {{user.profile.name || 'Somebody (has not filled out their profile!)'}}
+                ng-show="!user.teamCode && !regIsOpen">
+          <p>
+            {{ TEAM.NO_TEAM_REG_CLOSED }}
           </p>
+        </div>
+        <div
+                class="ui form"
+                ng-show="!user.teamCode && regIsOpen">
 
-          <div
-            ng-show="regIsOpen">
-            <div class="ui divider"></div>
+          <div class="title">
+            Create a Team
+          </div>
 
+          <br>
+
+          <div class="field">
+            <input
+                    class="ui input"
+                    type="text"
+                    placeholder="Team name / title"
+                    ng-model="teamTitle">
+          </div>
+
+          <div class="field">
+            <input
+                    class="ui input"
+                    type="text"
+                    placeholder="What's your team about?"
+                    ng-model="teamDesc">
+          </div>
+
+
+          <div class="field">
             <button
-              class="ui fluid red button"
-              ng-click="leaveTeam()">Leave Team</button>
+                    class="ui fluid blue button"
+                    ng-click="createTeam()">
+              Create Team
+            </button>
           </div>
 
         </div>
-
       </div>
+
     </div>
   </div>
 

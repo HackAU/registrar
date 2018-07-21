@@ -10,7 +10,10 @@ angular.module('reg')
                     return $http.get(base);
                 },
                 createTeam: function(data){
-                    return $http.post(base, data);
+                    return $http.post(base, {team: data});
+                },
+                deleteTeam: function (teamId) {
+
                 }
             };
 
