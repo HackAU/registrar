@@ -1,5 +1,5 @@
 angular.module('reg')
-    .factory('SettingsService', [
+    .factory('TeamService', [
         '$http',
         function($http){
 
