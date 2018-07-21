@@ -16,6 +16,8 @@ module.exports = function (router) {
      */
     function isAdmin(req, res, next) {
 
+        return next(); // for testing purposes, remove!!!!
+
         var token = getToken(req);
 
         UserController.getByToken(token, function (err, user) {
@@ -94,7 +96,7 @@ module.exports = function (router) {
 
     router.get('/teams', isAdmin, function (req, res) {
         var query = req.query;
-
+        console.log("in teams");
         if (query.page && query.size) {
 
             TeamController.getPage(query, defaultResponse(req, res));

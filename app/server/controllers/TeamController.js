@@ -1,10 +1,11 @@
 const Team = require('../models/Team');
-
+const _ = require('lodash');
 const TeamController = {};
 
 
-TeamController.createTeam = function ({title, description}, callback) {
+TeamController.createTeam = function (data, callback) {
     const team = new Team();
+    _.merge(team, data);
     team.save(function (err) {
         if (err) {
             return callback(err);
