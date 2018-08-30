@@ -2,7 +2,7 @@
      ng-class="{open: showSidebar}">
     <div ui-sref="app.dashboard"
          class="logo item">
-        <!--<img src="assets/images/logo.svg">-->
+        <!-- <img src="assets/images/logo.svg"> -->
     </div>
 
     <div ui-sref-active="active"
@@ -12,6 +12,14 @@
     </div>
 
     <div ng-show="currentUser.verified">
+
+        <div
+                ui-sref-active="active"
+                ui-sref="app.guide"
+                class="item"
+                ng-show="currentUser.admin">
+            Organizer Guide
+        </div>
 
         <div
                 ui-sref-active="active"
@@ -74,5 +82,3 @@
     <img ng-show="!showSidebar" src="assets/images/logo.svg"/>
     <span class="close" ng-show="showSidebar">#x2715</span>
 </div>
-
-

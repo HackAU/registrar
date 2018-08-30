@@ -59,6 +59,11 @@ angular.module('reg')
                         }
                     },
                 })
+                .state('app.guide', {
+                    url: "/guide",
+                    templateUrl: "views/admin-views/guide/guide.html",
+                    controller: 'GuideCtrl'
+                })
                 .state('app.application', {
                     url: "/application",
                     templateUrl: "views/application/application.html",

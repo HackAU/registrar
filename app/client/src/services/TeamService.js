@@ -13,7 +13,7 @@ angular.module('reg')
                     return $http.post(base, {team: data});
                 },
                 deleteTeam: function (teamId) {
-
+                    // console.log("deleted " + teamId);
                 }
             };
 
