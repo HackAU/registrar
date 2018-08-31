@@ -21,14 +21,14 @@ angular.module('reg')
 
             TeamService.getTeams()
                 .success( teams => {
-                    // console.log(teams);
+                    console.log(teams);
                     $scope.teams = teams;
                 });
 
 
             $scope.deleteTeam = function (team) {
                 $scope.teams.remove(team);
-            }
+            };
 
             $scope.createTeam = function () {
 

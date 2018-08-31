@@ -34,8 +34,8 @@
 
                     <div class="field">
                         <button class="ui fluid blue button" ng-click="createTeam()">
-              Create Team
-            </button>
+                            Create Team
+                        </button>
                     </div>
 
                 </div>
@@ -61,11 +61,18 @@
 
                         <br>
 
+                        <div class="ui list">
+                            <div ng-repeat="member in team.members">
+                                <div> Email: {{member.email}}</div>
+                                <div>  {{ (!member.verified ? 'Verified' : 'Not verified') }} </div>
+                            </div>
+                        </div>
+
 
                         <div class="field">
                             <button class="ui fluid red button" ng-click="deleteTeam(team)">
-              Delete team
-            </button>
+                                Delete team
+                            </button>
                         </div>
 
                     </div>
@@ -73,7 +80,6 @@
 
                 </div>
             </div>
-
 
 
         </div>
