@@ -3,7 +3,7 @@ angular.module('reg')
         '$http',
         function($http){
 
-            var base = '/api/teams/';
+            var base = '/api/teams';
 
             return {
                 getTeams: function(){
@@ -13,7 +13,7 @@ angular.module('reg')
                     return $http.post(base, {team: data});
                 },
                 deleteTeam: function (teamId) {
-                    // console.log("deleted " + teamId);
+                    return $http.delete(base + "/" + teamId);
                 }
             };
 

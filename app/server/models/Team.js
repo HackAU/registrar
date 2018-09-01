@@ -11,7 +11,10 @@ var validator = require('validator');
  */
 var schema = new mongoose.Schema({
     status: String,
-    title: String,
+    title: {
+        type: String,
+        default: "None"
+    },
     description: {
         type: String,
         default: "None"
@@ -19,8 +22,7 @@ var schema = new mongoose.Schema({
     lastUpdated: {
         type: Number,
         default: Date.now(),
-    },
-
+    }
 });
 
 
