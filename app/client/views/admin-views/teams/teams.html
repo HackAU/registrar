@@ -9,13 +9,8 @@
                 {{error}}
             </div>
 
-            <div class="ui segment" ng-show="!user.teamCode && !regIsOpen">
-                <div>
-                    <p>
-                        {{ TEAM.NO_TEAM_REG_CLOSED }}
-                    </p>
-                </div>
-                <div class="ui form" ng-show="!user.teamId && regIsOpen">
+            <div class="ui segment" ng-show="!user.teamCode  || currentUser.admin">
+                <div class="ui form" ng-show="!user.teamId">
 
                     <div class="title">
                         Create a Team
