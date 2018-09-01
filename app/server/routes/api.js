@@ -109,6 +109,13 @@ module.exports = function (router) {
         TeamController.createTeam(team, defaultResponse(req, res));
     });
 
+    router.put('/teams/:id', isOwnerOrAdmin, function (req, res) {
+        const team = req.body.team;
+        const id = req.params.id;
+
+        TeamController.updateTeamById(id, team, defaultResponse(req, res));
+    });
+
     router.delete('/teams/:id', isAdmin, function (req, res) {
         const id = req.params.id;
         const team = req.team;
