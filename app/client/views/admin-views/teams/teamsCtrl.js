@@ -7,7 +7,7 @@ angular.module('reg')
         'UserService',
         'TeamService',
         'TEAM',
-        function ($scope, currentUser, settings, Utils, UserService, TeamService, TEAM) {
+        function($scope, currentUser, settings, Utils, UserService, TeamService, TEAM) {
             // Get the current user's most recent data.
             var Settings = settings.data;
 
@@ -20,24 +20,33 @@ angular.module('reg')
 
 
             TeamService.getTeams()
-                .success( teams => {
-                    // console.log(teams);
+                .success(teams => {
                     $scope.teams = teams;
                 });
 
 
-            $scope.deleteTeam = function (team) {
-                $scope.teams.remove(team);
+            $scope.deleteTeam = function(team, index) {
+                TeamService.deleteTeam(team._id)
+                .success(({team}) => {
+                    $scope.teams.splice(index, 1);
+                })
             }
 
-            $scope.createTeam = function () {
-
-                TeamService.createTeam({title: $scope.teamTitle, description: $scope.teamDesc})
-                    .success( ({team}) => {
-                        console.log("team created:", team);
-                        $scope.teams.push(team);
-                    })
+            $scope.createTeam = function() {
+                if ($scope.teamTitle == null || $scope.teamDesc == null || $scope.teamTitle == "" || $scope.teamDesc == "") {
+                    alert("Please fill in a title and description.")
+                } else {
+                    TeamService.createTeam({
+                            title: $scope.teamTitle,
+                            description: $scope.teamDesc
+                        })
+                        .success(({team}) => {
+                            console.log("team created:", team);
+                            $scope.teams.push(team);
+                        })
+                }
             }
 
 
-        }]);
+        }
+    ]);

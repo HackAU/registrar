@@ -96,15 +96,10 @@ module.exports = function (router) {
 
     router.get('/teams', isAdmin, function (req, res) {
         const query = req.query;
-        console.log("in teams");
         if (query.page && query.size) {
-
             TeamController.getPage(query, defaultResponse(req, res));
-
         } else {
-
             TeamController.getAll(defaultResponse(req, res));
-
         }
     });
 
@@ -112,6 +107,13 @@ module.exports = function (router) {
         const team = req.body.team;
         TeamController.createTeam(team, defaultResponse(req, res));
     });
+
+    router.delete('/teams/:id', isAdmin, function (req, res) {
+        const id = req.params.id;
+        const team = req.team;
+        TeamController.removeTeamById(id, team, defaultResponse(req, res));
+    });
+
 
     // ---------------------------------------------
     // Users
@@ -151,6 +153,7 @@ module.exports = function (router) {
      * GET - Get a specific user.
      */
     router.get('/users/:id', isOwnerOrAdmin, function (req, res) {
+        console.log("testing");
         UserController.getById(req.params.id, defaultResponse(req, res));
     });
 

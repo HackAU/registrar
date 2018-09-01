@@ -17,6 +17,21 @@ TeamController.createTeam = function (data, callback) {
 };
 
 
+/**
+ * Get a user by id.
+ * @param  {String}   id       User id
+ * @param  {Function} callback args(err, user)
+ */
+TeamController.getById = function (id, callback){
+  Team.findById(id, callback);
+};
+
+
+TeamController.removeTeamById = function(id, team, callback) {
+    Team.findByIdAndRemove(id, callback);
+};
+
+
 TeamController.getAll = function (callback) {
     Team.find({}, callback);
 };
