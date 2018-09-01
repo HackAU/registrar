@@ -12,6 +12,9 @@ angular.module('reg')
                 createTeam: function(data){
                     return $http.post(base, {team: data});
                 },
+                updateTeam: function(teamId, data){
+                    return $http.put(base + "/" + teamId, {team: data});
+                },
                 deleteTeam: function (teamId) {
                     return $http.delete(base + "/" + teamId);
                 }

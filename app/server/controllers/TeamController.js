@@ -17,6 +17,22 @@ TeamController.createTeam = function (data, callback) {
     });
 };
 
+TeamController.updateTeamById = function (id, data, callback) {
+    Team.findOneAndUpdate({
+          _id: id,
+      },
+      {
+          $set: {
+            ...data
+          }
+      },
+      {
+          new: true
+      },
+      callback);
+
+};
+
 
 /**
  * Get a user by id.
