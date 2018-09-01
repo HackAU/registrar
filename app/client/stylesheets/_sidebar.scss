@@ -7,6 +7,19 @@
   z-index: 999;
   overflow: auto;
 
+  .sidebar-link {
+      font-size: 20px;
+      margin-left: 1em;
+  }
+  .sidebar-link:hover {
+      color: blue;
+      cursor: pointer;
+  }
+
+  a:visited {
+      color:white;
+  }
+
   @include transition-duration($sidebar-transition-time);
 
   .item {

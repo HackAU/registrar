@@ -13,6 +13,7 @@ angular.module('reg')
       var user = $rootScope.currentUser;
 
       $scope.EVENT_INFO = EVENT_INFO;
+      $scope.date_year = new Date().getFullYear();
 
       $scope.pastConfirmation = Utils.isAfter(user.status.confirmBy);
 
