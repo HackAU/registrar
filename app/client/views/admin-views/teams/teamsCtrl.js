@@ -33,7 +33,7 @@ angular.module('reg')
 
             $scope.createTeam = function() {
                 if ($scope.teamTitle == null || $scope.teamDesc == null || $scope.teamTitle == "" || $scope.teamDesc == "") {
-                    alert("Please fill in a title and description.")
+                    $scope.error = "Please fill in a title and description.";
                 } else {
                     $scope.teamTitle = $scope.teamTitle.replace(/ +(?= )/g,'');
                     $scope.teamTitle = $scope.teamTitle.toUpperCase();
@@ -48,7 +48,7 @@ angular.module('reg')
                             })
                     }
                     else {
-                        alert("Team '" + $scope.teamTitle + "' already exists.");
+                        $scope.error = "Team '" + $scope.teamTitle + "' already exists.";
                     }
                 }
                 $scope.teamTitle = "";

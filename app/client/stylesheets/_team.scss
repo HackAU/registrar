@@ -1,14 +1,35 @@
 #team {
-  text-align: center;
-  .title {
-    padding-top: 24px;
-  }
-  p {
     text-align: center;
-    margin: 12px;
-  }
-  .subheader {
-    word-wrap: break-word;
-  }
 
+    .title {
+        padding-top: 12px;
+        padding-bottom: 24px;
+    }
+
+    p {
+        text-align: center;
+        margin: 12px;
+    }
+
+    .subheader {
+        word-wrap: break-word;
+    }
+
+    .create {
+        max-width: 90%;
+        margin: auto;
+    }
+
+    .item-block {
+        max-width: 300px;
+        min-width: 300px;
+        display: inline-block;
+        margin-left: 20px;
+    }
+
+    .no-overlap {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
