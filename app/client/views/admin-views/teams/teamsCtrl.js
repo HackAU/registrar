@@ -33,17 +33,35 @@ angular.module('reg')
 
             $scope.createTeam = function() {
                 if ($scope.teamTitle == null || $scope.teamDesc == null || $scope.teamTitle == "" || $scope.teamDesc == "") {
-                    alert("Please fill in a title and description.")
+                    $scope.error = "Please fill in a title and description.";
                 } else {
-                    TeamService.createTeam({
-                            title: $scope.teamTitle,
-                            description: $scope.teamDesc
-                        })
-                        .success(({team}) => {
-                            console.log("team created:", team);
-                            $scope.teams.push(team);
-                        })
+                    $scope.teamTitle = $scope.teamTitle.replace(/ +(?= )/g,'');
+                    $scope.teamTitle = $scope.teamTitle.toUpperCase();
+                    if (!isTitleExist()) {
+                        TeamService.createTeam({
+                                title: $scope.teamTitle,
+                                description: $scope.teamDesc
+                            })
+                            .success(({team}) => {
+                                console.log("team created:", team);
+                                $scope.teams.push(team);
+                            })
+                    }
+                    else {
+                        $scope.error = "Team '" + $scope.teamTitle + "' already exists.";
+                    }
                 }
+                $scope.teamTitle = "";
+                $scope.teamDesc = "";
+            }
+
+            function isTitleExist() {
+                for (var i = 0; i < $scope.teams.length; i++) {
+                    if ($scope.teamTitle === $scope.teams[i].title) {
+                        return true;
+                    }
+                }
+                return false;
             }
 
 

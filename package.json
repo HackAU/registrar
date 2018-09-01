@@ -33,7 +33,7 @@
   "scripts": {
     "mongo": "mongod --dbpath db",
     "start": "MONGODB_URI=mongodb://eladkeyshawn:9352221@ds015774.mlab.com:15774/registrar-test node www.js",
-    "watch": "gulp watch ",
+    "watch": "gulp watch",
     "prod": "gulp build && node app.js",
     "config": "cp .env.config .env",
     "postinstall": "bower install --allow-root"
