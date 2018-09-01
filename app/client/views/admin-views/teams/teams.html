@@ -48,7 +48,7 @@
                     <a class="ui form">
 
 
-                        <a class="title" ng-click="editTeam(team)">
+                        <a href="#" class="title" ng-click="editTeam(team)">
                             {{team.title}}
                         </a>
 
@@ -60,12 +60,16 @@
 
                         <br>
 
-                        <div class="ui list">
+                        <div class="ui list" ng-show="team.members && team.members.length > 0">
                             Team members:
                             <div ng-repeat="member in team.members">
 
                                 <div> Email: {{member.email}}</div>
                             </div>
+                        </div>
+
+                        <div  ng-show="!team.members || team.members && !team.members.length">
+                            No team members yet!
                         </div>
 
 
@@ -103,9 +107,7 @@
     <!--Edit team mode-->
     <div ng-show="editMode" class="ui stackable page grid centered">
 
-        {{team}}
         <div class="ui segment">
-
 
             <!--Teams list  -->
             <a class="ui form">
@@ -120,12 +122,16 @@
                     <input class="ui input" type="text" placeholder="What's your team about?" ng-model="team.description">
                 </div>
 
-                <div class="ui list">
+                <div class="ui list" ng-show="team.members && team.members.length > 0">
                     Team members:
-                    <div ng-repeat="member in team">
+                    <div  ng-show="teams" ng-repeat="member in team.members">
 
                         <div> Email: {{member.email}}</div>
                     </div>
+                </div>
+
+                <div class="field" ng-show="!team.members || team.members && !team.members.length">
+                    No team members yet!
                 </div>
 
 
@@ -145,7 +151,7 @@
 
                 <div class="field" ng-show="currentUser.admin">
 
-                    <button class="ui fluid blue button" ng-click="saveTeam(team)">
+                    <button class="ui fluid blue button" ng-click="saveTeam(team); backToList()">
                         Save
                     </button>
                 </div>

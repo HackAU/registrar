@@ -50,8 +50,9 @@ angular.module('reg')
 
               TeamService.updateTeam(team._id, team)
                 .success((team) => {
+                  $scope.team = team;
                 })
-          }
+          };
 
 
 
@@ -75,6 +76,7 @@ angular.module('reg')
           };
 
           $scope.editTeam = function (team) {
+              if(!$scope.currentUser.admin) return;
               $scope.editMode = true;
               $scope.team = team;
 
