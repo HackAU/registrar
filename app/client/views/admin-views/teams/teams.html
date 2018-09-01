@@ -3,8 +3,6 @@
         Teams
     </div>
 
-    <div ng-show="editMode" ng-click="backToList()" class="ui button"> Back to all teams</div>
-
 
     <div ng-show="!editMode" class="ui page create">
         <div class="ui error message" ng-show="error">
@@ -37,56 +35,54 @@
 
             </div>
         </div>
-    </div>
-    <div class="">
-        <div class="">
-            <div class="ui stackable column grid segment item-block" ng-repeat="team in teams">
-                <!--Teams list  -->
-                <div class="column ">
-                    <div class="form segment">
-                        <a class="title no-overlap">
-                            {{team.title}}
-                        </a>
 
-                        <div class="description no-overlap">
-                            {{team.description}}
+        <div class="ui stackable column grid segment item-block" ng-repeat="team in teams">
+            <!--Teams list  -->
+            <div class="column ">
+                <div class="form segment">
+                    <a href="#" class="title no-overlap" ng-click="editTeam(team)">
+                        {{team.title}}
+                    </a>
+
+                    <div class="description no-overlap">
+                        {{team.description}}
+                    </div>
+
+                    <br>
+
+                    <div class="ui list" ng-show="team.members && team.members.length > 0">
+                        Team members:
+                        <div ng-repeat="member in team.members">
+
+                            <div> Email: {{member.email}}</div>
                         </div>
+                    </div>
 
-                        <br>
-
-                        <div class="ui list" ng-show="team.members && team.members.length > 0">
-                            Team members:
-                            <div ng-repeat="member in team.members">
-
-                                <div> Email: {{member.email}}</div>
-                            </div>
-                        </div>
-
-                        <div  ng-show="!team.members || team.members && !team.members.length">
-                            No team members yet!
-                        </div>
+                    <div  ng-show="!team.members || team.members && !team.members.length">
+                        No team members yet!
+                    </div>
 
 
-                        <div class="field" ng-show="!currentUser.admin && user.teamId != team._id">
+                    <div class="field" ng-show="!currentUser.admin && user.teamId != team._id">
 
-                            <button class="ui fluid green button" ng-click="joinTeam(team ,$index)">
-                                Join team
-                            </button>
-                        </div>
+                        <button class="ui fluid green button" ng-click="joinTeam(team ,$index)">
+                            Join team
+                        </button>
+                    </div>
 
 
-                        <div class="field" ng-show="!currentUser.admin && user.teamId == team._id">
-                            <button class="ui fluid red button" ng-click="leaveTeam(team ,$index)">
-                                Leave team
-                            </button>
-                        </div>
+                    <div class="field" ng-show="!currentUser.admin && user.teamId == team._id">
+                        <button class="ui fluid red button" ng-click="leaveTeam(team ,$index)">
+                            Leave team
+                        </button>
+                    </div>
 
-                        <div class="field" ng-show="currentUser.admin">
+                    <div class="field" ng-show="currentUser.admin">
 
-                            <button class="ui fluid red button" ng-click="deleteTeam(team ,$index)">
-                                Delete team
-                            </button>
-                        </div>
+                        <button class="ui fluid red button" ng-click="deleteTeam(team ,$index)">
+                            Delete team
+                        </button>
+                    </div>
 
                     </a>
 
@@ -96,8 +92,16 @@
 
 
         </div>
+
     </div>
 
+
+
+    <div ng-show="editMode" ng-click="backToList()" class="ui button"> Back to all teams</div>
+
+    <br>
+    <br>
+    <br>
     <!--Edit team mode-->
     <div ng-show="editMode" class="ui stackable page grid centered">
 
