@@ -210,10 +210,10 @@ module.exports = function (router) {
    * }
      */
     router.put('/users/:id/team', isOwnerOrAdmin, function (req, res) {
-        const code = req.body.code;
+        const teamId = req.body.teamId;
         const id = req.params.id;
 
-        UserController.createOrJoinTeam(id, code, defaultResponse(req, res));
+        UserController.createOrJoinTeam(id, teamId, defaultResponse(req, res));
 
     });
 

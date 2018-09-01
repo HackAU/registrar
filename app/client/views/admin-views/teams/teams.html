@@ -9,13 +9,13 @@
                 {{error}}
             </div>
 
-            <div class="ui segment">
-                <div ng-show="!user.teamCode && !regIsOpen">
+            <div class="ui segment" ng-show="!user.teamCode && !regIsOpen">
+                <div>
                     <p>
                         {{ TEAM.NO_TEAM_REG_CLOSED }}
                     </p>
                 </div>
-                <div class="ui form" ng-show="!user.teamCode && regIsOpen">
+                <div class="ui form" ng-show="!user.teamId && regIsOpen">
 
                     <div class="title">
                         Create a Team
@@ -62,14 +62,30 @@
                         <br>
 
                         <div class="ui list">
+                            Team members:
                             <div ng-repeat="member in team.members">
+
                                 <div> Email: {{member.email}}</div>
-                                <div>  {{ (!member.verified ? 'Verified' : 'Not verified') }} </div>
+                                <!--<div>  {{ (!member.verified ? 'Verified' : 'Not verified') }} </div>-->
                             </div>
                         </div>
 
 
-                        <div class="field">
+                        <div class="field" ng-show="!currentUser.admin && user.teamId != team._id">
+
+                            <button class="ui fluid green button" ng-click="joinTeam(team ,$index)">
+                                Join team
+                            </button>
+                        </div>
+
+
+                        <div class="field" ng-show="!currentUser.admin && user.teamId == team._id">
+                            <button class="ui fluid red button" ng-click="leaveTeam(team ,$index)">
+                                Leave team
+                            </button>
+                        </div>
+
+                        <div class="field" ng-show="currentUser.admin">
 
                             <button class="ui fluid red button" ng-click="deleteTeam(team ,$index)">
                                 Delete team

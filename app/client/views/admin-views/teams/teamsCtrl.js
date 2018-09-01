@@ -11,6 +11,7 @@ angular.module('reg')
             // Get the current user's most recent data.
             var Settings = settings.data;
 
+            console.log(currentUser);
             $scope.regIsOpen = Utils.isRegOpen(Settings);
 
             $scope.user = currentUser.data;
@@ -22,12 +23,39 @@ angular.module('reg')
             TeamService.getTeams()
                 .success(teams => {
                     $scope.teams = teams;
+                    console.log(teams[0]);
                 });
 
             $scope.deleteTeam = function(team, index) {
                 TeamService.deleteTeam(team._id)
                 .success(({team}) => {
                     $scope.teams.splice(index, 1);
+                })
+            }
+
+            $scope.joinTeam = function(team, index) {
+                UserService.joinOrCreateTeam(team._id)
+                .success( (user) => {
+                    TeamService.getTeams()
+                      .success(teams => {
+                          $scope.teams = teams;
+                      });
+                    $scope.user = user;
+
+                })
+            }
+
+            $scope.leaveTeam = function(team, index) {
+                UserService.joinOrCreateTeam()
+                .success( (user) => {
+                    TeamService.getTeams()
+                      .success(teams => {
+                          $scope.teams = teams;
+                      });
+
+                    console.log("updated user", user);
+
+                    $scope.user = user;
                 })
             }
 
