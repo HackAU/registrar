@@ -24,7 +24,6 @@ angular.module('reg')
                     $scope.teams = teams;
                 });
 
-
             $scope.deleteTeam = function(team, index) {
                 TeamService.deleteTeam(team._id)
                 .success(({team}) => {

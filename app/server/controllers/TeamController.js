@@ -1,4 +1,5 @@
 const Team = require('../models/Team');
+const User = require('../models/User');
 const _ = require('lodash');
 const TeamController = {};
 
@@ -33,7 +34,15 @@ TeamController.removeTeamById = function(id, team, callback) {
 
 
 TeamController.getAll = function (callback) {
-    Team.find({}, callback);
+    Team.find({}, (err, teams) => {
+        const teamsIds =_.map(teams, team => team.id);
+        User.find(User.where('teamId').in(teamsIds), (err, users) => {
+            callback(err,_.map(teams, team => {
+                team._doc.members =  _.filter(users, {'teamId': team.id})
+                return team;
+            }));
+        } );
+    });
 };
 
 

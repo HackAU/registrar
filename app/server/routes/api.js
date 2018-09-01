@@ -96,6 +96,7 @@ module.exports = function (router) {
 
     router.get('/teams', isAdmin, function (req, res) {
         const query = req.query;
+
         if (query.page && query.size) {
             TeamController.getPage(query, defaultResponse(req, res));
         } else {
