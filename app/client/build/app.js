@@ -27,7 +27,7 @@ app
 
 angular.module('reg')
     .constant('EVENT_INFO', {
-        NAME: 'HackAU 2017',
+        NAME: 'HackAU',
     })
     .constant('DASHBOARD', {
         UNVERIFIED: 'You should have received an email asking you verify your email. Click the link in the email and you can start your application!',
@@ -643,6 +643,7 @@ angular.module('reg')
         }
       };
     }]);
+
 angular.module('reg')
   .controller('AdminCtrl', [
     '$scope',
@@ -650,6 +651,7 @@ angular.module('reg')
     function($scope, UserService){
       $scope.loading = true;
     }]);
+
 angular.module('reg')
     .controller('GuideCtrl', [
         '$scope',
@@ -1837,6 +1839,7 @@ angular.module('reg')
       var user = $rootScope.currentUser;
 
       $scope.EVENT_INFO = EVENT_INFO;
+      $scope.date_year = new Date().getFullYear();
 
       $scope.pastConfirmation = Utils.isAfter(user.status.confirmBy);
 
@@ -1939,6 +1942,7 @@ angular.module('reg')
       }
 
     }]);
+
 angular.module('reg')
   .controller('DashboardCtrl', [
     '$rootScope',
