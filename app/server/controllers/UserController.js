@@ -450,30 +450,30 @@ UserController.getTeammates = function(id, callback){
 /**
  * Given a team code and id, join a team.
  * @param  {String}   id       Id of the user joining/creating
- * @param  {String}   code     Code of the proposed team
+ * @param teamId
  * @param  {Function} callback args(err, users)
  */
-UserController.createOrJoinTeam = function(id, code, callback){
+UserController.createOrJoinTeam = function(id, teamId, callback){
 
-  if (!code){
-    return callback({
-      message: "Please enter a team name."
-    });
-  }
-
-  if (typeof code !== 'string') {
-    return callback({
-      message: "Get outta here, punk!"
-    });
-  }
+  // if (!teamId ){
+  //   return callback({
+  //     message: "Please enter a team name."
+  //   });
+  // }
+  //
+  // if (typeof teamId !== 'string') {
+  //   return callback({
+  //     message: "Get outta here, punk!"
+  //   });
+  // }
 
   User.find({
-    teamCode: code
+      teamId
   })
   .select('profile.name')
   .exec(function(err, users){
     // Check to see if this team is joinable (< team max size)
-    if (users.length >= maxTeamSize){
+    if (teamId && users.length >= maxTeamSize){
       return callback({
         message: "Team is full."
       });
@@ -485,7 +485,7 @@ UserController.createOrJoinTeam = function(id, code, callback){
       verified: true
     },{
       $set: {
-        teamCode: code
+        teamId: teamId
       }
     }, {
       new: true

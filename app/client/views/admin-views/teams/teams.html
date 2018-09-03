@@ -3,73 +3,169 @@
         Teams
     </div>
 
-    <div class="ui page create">
+
+    <div ng-show="!editMode" class="ui page create">
         <div class="ui error message" ng-show="error">
             {{error}}
         </div>
 
-        <div class="ui segment">
-            <div ng-show="!user.teamCode && !regIsOpen">
-                <p>
-                    {{ TEAM.NO_TEAM_REG_CLOSED }}
-                </p>
+            <div class="ui segment" ng-show="!user.teamCode  || currentUser.admin">
+                <div class="ui form" ng-show="!user.teamId">
+
+                    <div class="title">
+                        Create a Team
+                    </div>
+
+                    <br>
+
+                    <div class="field">
+                        <input class="ui input" type="text" placeholder="Team name / title" ng-model="teamTitle">
+                    </div>
+
+                    <div class="field">
+                        <input class="ui input" type="text" placeholder="What's your team about?" ng-model="teamDesc">
+                    </div>
+
+
+                    <div class="field">
+                        <button class="ui fluid blue button" ng-click="createTeam()">
+                            Create Team
+                        </button>
+                    </div>
+
             </div>
-            <div class="ui form" ng-show="!user.teamCode && regIsOpen">
+        </div>
 
-                <div class="title">
-                    Create a Team
+        <div class="ui stackable column grid segment item-block" ng-repeat="team in teams">
+            <!--Teams list  -->
+            <div class="column ">
+                <div class="form segment">
+                    <a href="#" class="title no-overlap" ng-click="editTeam(team)">
+                        {{team.title}}
+                    </a>
+
+                    <div class="description no-overlap">
+                        {{team.description}}
+                    </div>
+
+                    <br>
+
+                    <div class="ui list" ng-show="team.members && team.members.length > 0">
+                        Team members:
+                        <div ng-repeat="member in team.members">
+
+                            <div> Email: {{member.email}}</div>
+                        </div>
+                    </div>
+
+                    <div  ng-show="!team.members || team.members && !team.members.length">
+                        No team members yet!
+                    </div>
+
+
+                    <div class="field" ng-show="!currentUser.admin && user.teamId != team._id">
+
+                        <button class="ui fluid green button" ng-click="joinTeam(team ,$index)">
+                            Join team
+                        </button>
+                    </div>
+
+
+                    <div class="field" ng-show="!currentUser.admin && user.teamId == team._id">
+                        <button class="ui fluid red button" ng-click="leaveTeam(team ,$index)">
+                            Leave team
+                        </button>
+                    </div>
+
+                    <div class="field" ng-show="currentUser.admin">
+
+                        <button class="ui fluid red button" ng-click="deleteTeam(team ,$index)">
+                            Delete team
+                        </button>
+                    </div>
+
+                    </a>
+
+
                 </div>
+            </div>
 
-                <br>
+
+        </div>
+
+    </div>
+
+
+
+    <div ng-show="editMode" ng-click="backToList()" class="ui button"> Back to all teams</div>
+
+    <br>
+    <br>
+    <br>
+    <!--Edit team mode-->
+    <div ng-show="editMode" class="ui stackable page grid centered">
+
+        <div class="ui segment">
+
+            <!--Teams list  -->
+            <a class="ui form">
+
+
 
                 <div class="field">
-                    <input class="ui input" type="text" placeholder="Team name / title" ng-model="teamTitle">
+                    <input class="ui input" type="text" placeholder="Team name / title" ng-model="team.title">
                 </div>
 
                 <div class="field">
-                    <input class="ui input" type="text" placeholder="What's your team about?" ng-model="teamDesc">
+                    <input class="ui input" type="text" placeholder="What's your team about?" ng-model="team.description">
                 </div>
 
-                <div class="field">
-                    <button class="ui fluid blue button" ng-click="createTeam()">
-                        Create Team
+                <div class="ui list" ng-show="team.members && team.members.length > 0">
+                    Team members:
+                    <div  ng-show="teams" ng-repeat="member in team.members">
+
+                        <div> Email: {{member.email}}</div>
+                    </div>
+                </div>
+
+                <div class="field" ng-show="!team.members || team.members && !team.members.length">
+                    No team members yet!
+                </div>
+
+
+                <div class="field" ng-show="!currentUser.admin && user.teamId != team._id">
+
+                    <button class="ui fluid green button" ng-click="joinTeam(team ,$index)">
+                        Join team
                     </button>
                 </div>
 
-            </div>
-        </div>
-    </div>
-    <div class="">
-        <div class="">
-            <div class="ui stackable column grid segment item-block" ng-repeat="team in teams">
-                <!--Teams list  -->
-                <div class="column ">
-                    <div class="form segment">
-                        <div class="title no-overlap">
-                            {{team.title}}
-                        </div>
 
-                        <div class="description no-overlap">
-                            {{team.description}}
-                        </div>
-
-                        <br>
-
-                        <div class="ui list">
-                            <div ng-repeat="member in team.members">
-                                <div> Email: {{member.email}}</div>
-                                <div> {{ (!member.verified ? 'Verified' : 'Not verified') }} </div>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <button class="ui fluid red button" ng-click="deleteTeam(team ,$index)">Delete team</button>
-                        </div>
-                    </div>
+                <div class="field" ng-show="!currentUser.admin && user.teamId == team._id">
+                    <button class="ui fluid red button" ng-click="leaveTeam(team ,$index)">
+                        Leave team
+                    </button>
                 </div>
-            </div>
+
+                <div class="field" ng-show="currentUser.admin">
+
+                    <button class="ui fluid blue button" ng-click="saveTeam(team); backToList()">
+                        Save
+                    </button>
+                </div>
+
+                <div class="field" ng-show="currentUser.admin">
+
+                    <button class="ui fluid red button" ng-click="deleteTeam(team ,$index)">
+                        Delete team
+                    </button>
+                </div>
+
+            </a>
+
 
         </div>
     </div>
 
+    </div>
 </div>
